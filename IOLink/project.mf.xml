@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest>
+    <application name="IOLink">
+        <crown name="IOLink">
+            <desc>user script</desc>
+        </crown>
+        <meta key="author">AppSpace Sample</meta>
+        <meta key="version">2.5.0</meta>
+        <meta key="licensed">false</meta>
+        <meta key="priority">low</meta>
+        <meta key="copy-protected">false</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="tags">Communication,IOPort</meta>
+        <entry path="scripts" default="IOLink.lua">
+            <file type="text/x-lua">IOLink.lua</file>
+        </entry>
+    </application>
+</manifest>
