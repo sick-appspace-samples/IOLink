@@ -24,9 +24,8 @@
 --Start of Global Scope---------------------------------------------------------
 
 -- Enable power on S1 port, must be adapted if another port is used
--- luacheck: globals gPwr
-gPwr = Connector.Power.create('S1')
-gPwr:enable(true)
+Pwr = Connector.Power.create('S1')
+Pwr:enable(true)
 
 -- Creating IO-Link device handle for S1 port, must be adapted if another port is used
 -- Now S1 port is configured as an IO-Link master.
@@ -41,7 +40,6 @@ tmr:setPeriodic(true)
 
 --Start of Function and Event Scope---------------------------------------------
 
---@handleOnConnected()
 local function handleOnConnected()
   print('IO-Link device connected')
 
@@ -66,23 +64,20 @@ local function handleOnConnected()
 end
 IOLink.RemoteDevice.register(deviceHandle, 'OnConnected', handleOnConnected)
 
--- Stopping timer when IO-Link device gets disconnected
---@handleOnDisconnected()
+--- Stopping timer when IO-Link device gets disconnected
 local function handleOnDisconnected()
   tmr:stop()
   print('IO-Link device disconnected')
 end
 IOLink.RemoteDevice.register( deviceHandle, 'OnDisconnected', handleOnDisconnected )
 
---@handleOnPowerFault()
 local function handleOnPowerFault()
   print('Power fault')
   tmr:stop()
 end
 IOLink.RemoteDevice.register(deviceHandle, 'OnPowerFault', handleOnPowerFault)
 
--- On every expiration of the timer, the process data is read
---@handleOnExpired()
+--- On every expiration of the timer, the process data is read
 local function handleOnExpired()
   -- Reading process data, needs to be adapted to the IO-Link device,
   -- see device manual for further information
